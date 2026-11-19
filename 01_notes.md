@@ -114,3 +114,40 @@ export default function App(){
   )
 }
 ```
+
+- different ways to update 
+
+```js
+export default function App() {
+  const [count, useCount] = useState(0);
+  function handleIncrement() {
+    useCount(prevCount => prevCount + 1);
+  }
+
+  function handleDecrement() {
+    useCount(count - 1);
+  }
+
+  return (
+    <main>
+      <h1>Counter</h1>
+      <div>
+        <h2 className="count">{ count }</h2>
+        <button onClick={handleIncrement} className="increment">Increment</button>
+        <button onClick={handleDecrement} className="decrement">Decrement</button>
+      </div>
+    </main>
+  )
+}
+
+// note - if we do 
+function handleIncrement() {
+  useCount(prev => prev + 1);
+  useCount(prev => prev + 1);
+  useCount(prev => prev + 1);
+}
+// this takes in the previous state three times, making an overall increment of +3 
+// on the other hand, count was always the same in the current state, so current state - 1, will always result the same
+```
+- here the function updater is used when the next state depends on the previous state 
+- else use the direct update
