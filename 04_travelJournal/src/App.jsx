@@ -4,12 +4,14 @@ import Card from "./components/cards";
 import data from "./data";
 
 export default function App() {
+  const entry = data.map((item) => {
+    return <Card key={item.id} {...item} />
+  });
+
   return (
     <Fragment>
       <Header />
-      {data.map((item) => {
-        return <Card key={item.id} {...item} />
-      })}
+      { entry }
     </Fragment>
   )
 }

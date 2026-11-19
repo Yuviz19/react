@@ -56,3 +56,61 @@ function App() {
 ## Props
 - stands for properties
 - allows components to pass data to child components
+  - allows to pass data from component to another component
+- prefer to use js higher order functions to go through
+  - each individual entity of the array or the object
+
+```js
+function Student(props) {
+    return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+    return <Student name="Yuvi" />;
+}
+```
+
+## States
+
+- state is the data a component manages internally
+- whenever the compoonent state changes, react re-renders the the component to display new info
+
+- for example, if we have
+```js
+export default App(){
+  let state = "yes";
+
+  const function handleClick(){
+    state = "no";
+  }
+
+  return (
+    <main>
+      <h1 classname="">Is it important to learn react<h1/>
+      <button onClick={handleClick}>{state}<button/>
+    <main/>
+  )
+}
+```
+
+// this will now work as intended, as simply changing the variable will not change the state of the component
+// instead we use a function given by react to change the state
+
+```js
+import {useState} from "react";
+
+export default function App(){
+  let [result, setResult] = useState("Yes"); // returns a variable with the argument given and a fucntion
+  // so to change the state, we use the function and that re-renders the page
+  function handleClick(){
+    setResult("Definately");
+  }
+  
+  return (
+    <main>
+      <h1 classname="">Is it important to learn react<h1/>
+      <button onClick={handleClick}>{result}<button/>
+    <main/>
+  )
+}
+```
